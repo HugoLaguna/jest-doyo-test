@@ -1,0 +1,33 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2
+jobs:
+  build:
+    filters:
+      branches:
+        only:
+          - develop
+          - main
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:14.15.4
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-cache
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+      # run tests
+      - run: 
+          name: Run tests 
+          command: npm run test 
+      
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
