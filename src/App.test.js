@@ -3,7 +3,7 @@ import App from './App';
 import mockFetch from './__mock__/search';
 
 const props = {
-  title: "EXPERIMENTALIT TEST"
+  title: "EXPERIMENTALITY TEST"
 }
 
 test('renders learn react link', () => {
