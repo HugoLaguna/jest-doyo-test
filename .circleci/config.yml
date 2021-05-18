@@ -6,7 +6,7 @@ jobs:
       branches:
         only:
           - develop
-          - main
+          - master
     docker:
       # specify the version you desire here
       - image: circleci/node:14.15.4
